@@ -1,0 +1,42 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from CalculadoraServerImplService WSDL service -->
+
+  <service name="CalculadoraServerImpl" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://impl.calc.werison.com.br"/>
+      <parameter name="wsdlServiceElement" value="CalculadoraServerImplService"/>
+      <parameter name="schemaQualified" value="http://impl.calc.werison.com.br"/>
+      <parameter name="wsdlServicePort" value="CalculadoraServerImpl"/>
+      <parameter name="className" value="br.com.werison.calc.impl.CalculadoraServerImplSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="CalculadoraServerImpl"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="subtracao" qname="operNS:subtracao" xmlns:operNS="http://impl.calc.werison.com.br" returnQName="retNS:subtracaoReturn" xmlns:retNS="http://impl.calc.werison.com.br" returnType="rtns:float" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:num1" xmlns:pns="http://impl.calc.werison.com.br" type="tns:float" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:num2" xmlns:pns="http://impl.calc.werison.com.br" type="tns:float" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="soma" qname="operNS:soma" xmlns:operNS="http://impl.calc.werison.com.br" returnQName="retNS:somaReturn" xmlns:retNS="http://impl.calc.werison.com.br" returnType="rtns:float" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:num1" xmlns:pns="http://impl.calc.werison.com.br" type="tns:float" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:num2" xmlns:pns="http://impl.calc.werison.com.br" type="tns:float" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="divisao" qname="operNS:divisao" xmlns:operNS="http://impl.calc.werison.com.br" returnQName="retNS:divisaoReturn" xmlns:retNS="http://impl.calc.werison.com.br" returnType="rtns:float" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:num1" xmlns:pns="http://impl.calc.werison.com.br" type="tns:float" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:num2" xmlns:pns="http://impl.calc.werison.com.br" type="tns:float" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="multiplicacao" qname="operNS:multiplicacao" xmlns:operNS="http://impl.calc.werison.com.br" returnQName="retNS:multiplicacaoReturn" xmlns:retNS="http://impl.calc.werison.com.br" returnType="rtns:float" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:num1" xmlns:pns="http://impl.calc.werison.com.br" type="tns:float" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:num2" xmlns:pns="http://impl.calc.werison.com.br" type="tns:float" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <parameter name="allowedMethods" value="soma divisao subtracao multiplicacao"/>
+
+  </service>
+</deployment>
